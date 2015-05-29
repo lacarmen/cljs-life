@@ -28,7 +28,7 @@
        (map first)))
 
 (defn setup []
-  (q/frame-rate 1)
+  (q/frame-rate 5)
   (q/background 240)
   (q/stroke 240)
   (q/fill 180)
