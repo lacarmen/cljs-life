@@ -6,14 +6,16 @@
 
 (def world-size 500)
 (def size 5)
-(def max-cells (inc (/ world-size size)))
+(def max-cells (/ world-size size))
 
 (defn neighbours
   "Returns the coordinates of the cell's 8 neighbours"
   [[x y]]
-  (for [dx [-1 0 1]
+  (filter
+    (defn f [c] (every? #(and (< %1 max-cells) (>= %1 0)) c))
+    (for [dx [-1 0 1]
         dy (if (zero? dx) [-1 1] [-1 0 1])]
-    [(+ dx x) (+ dy y)]))
+      [(+ dx x) (+ dy y)])))
 
 (defn will-live?
   "Checks if a cell will be alive in the next iteration"
